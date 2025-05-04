@@ -1,0 +1,7 @@
+6 7
+2 1 2    // Vertex 0 has edges to 1 (weight 1) and 2 (weight 2)
+2 0 3    // Vertex 1 has edges to 0 and 3
+2 0 4    // Vertex 2 has edges to 0 and 4
+2 1 5    // Vertex 3 has edges to 1 and 5
+2 2 5    // Vertex 4 has edges to 2 and 5
+2 3 4    // Vertex 5 has edges to 3 and 4
