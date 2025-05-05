@@ -1,7 +1,14 @@
-6 7
-2 1 2    // Vertex 0 has edges to 1 (weight 1) and 2 (weight 2)
-2 0 3    // Vertex 1 has edges to 0 and 3
-2 0 4    // Vertex 2 has edges to 0 and 4
-2 1 5    // Vertex 3 has edges to 1 and 5
-2 2 5    // Vertex 4 has edges to 2 and 5
-2 3 4    // Vertex 5 has edges to 3 and 4
+12 21
+3 1 2 3      # Node 0: connects to 1,2,3
+3 0 4 5      # Node 1: connects to 0,4,5
+3 0 5 6      # Node 2: connects to 0,5,6
+3 0 6 7      # Node 3: connects to 0,6,7
+3 1 5 8      # Node 4: connects to 1,5,8
+4 1 2 4 9    # Node 5: connects to 1,2,4,9
+4 2 3 5 9    # Node 6: connects to 2,3,5,9
+3 3 6 10     # Node 7: connects to 3,6,10
+3 4 9 11     # Node 8: connects to 4,9,11
+5 5 6 8 10 11# Node 9: connects to 5,6,8,10,11
+3 7 9 11     # Node 10: connects to 7,9,11
+3 8 9 10     # Node 11: connects to 8,9,10
+
