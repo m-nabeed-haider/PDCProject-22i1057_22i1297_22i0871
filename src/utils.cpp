@@ -80,18 +80,26 @@ void partition_graph(Graph& graph, int num_parts, std::vector<idx_t>& part_resul
                         &objval,
                         part_result.data());
 }
+void generate_edge_updates(std::vector<EdgeUpdate>& updates, const std::string& filename) {
+    std::ifstream file(filename);
+    std::string line;
 
-void generate_edge_updates(std::vector<EdgeUpdate>& updates, int count, int n_vertices) {
-    srand(time(0));
-    for (int i = 0; i < count; ++i) {
-        EdgeUpdate e;
-        e.u = rand() % n_vertices;
-        e.v = rand() % n_vertices;
-        e.weight     = (rand() % n_vertices + 1) * 0.1;
-        e.is_deletion = (rand()%2 == 0);
-        updates.push_back(e);
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        EdgeUpdate update;
+        iss >> update.u >> update.v;
+        if (iss >> update.weight) {
+            update.is_deletion = false;
+        }
+        else {
+            update.is_deletion = true;
+            update.weight = 0.0f; 
+        }
+
+        updates.push_back(update);
     }
 }
+
 
 void distribute_updates(const std::vector<EdgeUpdate>& updates,
                         const std::vector<int>& part_result,

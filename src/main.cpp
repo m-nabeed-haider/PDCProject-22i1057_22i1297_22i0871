@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     // 1) Rank 0: read graph, choose #parts, partition, and generate updates
     int desired_parts = num_procs;
     if (rank == 0) {
-        read_graph("datasets/soc-Orkut.txt", graph);
+        read_graph("Serial/initial_graph_metis.txt", graph);
 
         if (graph.n_vertices < num_procs) {
             std::cerr << "*** Warning: only "
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
         partition_graph(graph, desired_parts, part_result);
 
         
-        generate_edge_updates(updates,10, graph.n_vertices);
+        generate_edge_updates(updates,"Serial/updates.txt");
         for (auto& e : updates) {
             std::cout << e.is_deletion;
             std::cout << e.u << " ";
