@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
     }
 
     // 2) Broadcast actual #parts
+
     MPI_Bcast(&desired_parts, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     // 3) Broadcast graph sizes (so each rank can resize)
@@ -60,7 +61,8 @@ int main(int argc, char** argv) {
 
     // 6) Broadcast CSR arrays
     int xadj_sz, adjncy_sz, w_sz;
-    if (rank == 0) {
+    if (rank == 0) 
+    {
         xadj_sz   = graph.xadj.size();
         adjncy_sz = graph.adjncy.size();
         w_sz      = graph.weight.size();
@@ -69,7 +71,8 @@ int main(int argc, char** argv) {
     MPI_Bcast(&adjncy_sz, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(&w_sz,      1, MPI_INT, 0, MPI_COMM_WORLD);
 
-    if (rank != 0) {
+    if (rank != 0) 
+    {
         graph.xadj.resize(xadj_sz);
         graph.adjncy.resize(adjncy_sz);
         graph.weight.resize(w_sz);
@@ -79,7 +82,8 @@ int main(int argc, char** argv) {
     MPI_Bcast(graph.weight.data(), w_sz,      MPI_FLOAT, 0, MPI_COMM_WORLD);
 
     // 7) Rank 0: run full Dijkstra on the static graph
-    if (rank == 0) {
+    if (rank == 0) 
+    {
         sssp_tree.Dist[0] = 0.0f;
         std::priority_queue<
             std::pair<float,int>,

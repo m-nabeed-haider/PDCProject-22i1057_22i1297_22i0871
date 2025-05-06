@@ -61,7 +61,8 @@ void read_graph(const std::string& filename, Graph& graph) {
     graph.n_edges = graph.adjncy.size()/2;
 }
 
-void partition_graph(Graph& graph, int num_parts, std::vector<idx_t>& part_result) {
+void partition_graph(Graph& graph, int num_parts, std::vector<idx_t>& part_result)
+ {
     idx_t nv = graph.n_vertices;
     idx_t ncon = 1, objval;
     idx_t options[METIS_NOPTIONS];

@@ -52,7 +52,8 @@ void process_batch(SSSPTree& T,
         do {
             local_changed = false;
 #pragma omp parallel for reduction(||:local_changed)
-            for (int u = 0; u < G.n_vertices; ++u) {
+            for (int u = 0; u < G.n_vertices; ++u) 
+            {
                 if (part_result[u] != rank) continue;
                 for (int j = G.xadj[u]; j < G.xadj[u + 1]; ++j) {
                     int v = G.adjncy[j];
@@ -122,11 +123,13 @@ void process_batch(SSSPTree& T,
             MPI_COMM_WORLD);
 
         global_changed = false;
-        for (int i = 0; i < total_recv; ++i) {
+        for (int i = 0; i < total_recv; ++i) 
+        {
             int   v = recv_verts[i];
             float w = recv_wgts[i];
             int   u = T.Parent[v];
-            if (T.Dist[v] > T.Dist[u] + w) {
+            if (T.Dist[v] > T.Dist[u] + w) 
+            {
                 T.Dist[v] = T.Dist[u] + w;
                 T.Affected[v] = true;
                 global_changed = true;
