@@ -3,7 +3,7 @@
 #include <metis.h>
 #include <sstream>
 #include <iostream>
-
+#include<ctime>
 void read_graph(const std::string& filename, Graph& graph) {
     std::ifstream file(filename);
     if (!file) {
@@ -82,11 +82,12 @@ void partition_graph(Graph& graph, int num_parts, std::vector<idx_t>& part_resul
 }
 
 void generate_edge_updates(std::vector<EdgeUpdate>& updates, int count, int n_vertices) {
+    srand(time(0));
     for (int i = 0; i < count; ++i) {
         EdgeUpdate e;
         e.u = rand() % n_vertices;
         e.v = rand() % n_vertices;
-        e.weight     = 1.0f;
+        e.weight     = (rand() % n_vertices + 1) * 0.1;
         e.is_deletion = (rand()%2 == 0);
         updates.push_back(e);
     }

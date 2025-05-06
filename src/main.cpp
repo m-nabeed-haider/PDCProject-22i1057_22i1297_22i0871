@@ -34,8 +34,13 @@ int main(int argc, char** argv) {
         part_result.resize(graph.n_vertices);
         partition_graph(graph, desired_parts, part_result);
 
-        // For now, zero updates so we only test static SSSP
-        generate_edge_updates(updates, /*count=*/0, graph.n_vertices);
+        
+        generate_edge_updates(updates,10, graph.n_vertices);
+        for (auto& e : updates) {
+            std::cout << e.is_deletion;
+            std::cout << e.u << " ";
+            std::cout << e.v << " " << std::endl;
+        }
     }
 
     // 2) Broadcast actual #parts
@@ -134,6 +139,7 @@ int main(int argc, char** argv) {
         }
         std::cout << "====================================\n";
     }
+    //for (i = 0 ; i < graph.n)
 
     MPI_Finalize();
     return 0;
